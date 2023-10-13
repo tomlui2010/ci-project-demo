@@ -1,19 +1,32 @@
-version: 2
+# version: 2
+# orbs:
+#   browser-tools: circleci/browser-tools@1.1.0
+# jobs:
+#   build:
+#     docker:
+#       - image: cimg/node:20.8.0-browsers
+#         environment:
+#           CHROME_BIN: "/usr/bin/google-chrome"
+#     steps:
+#       - browser-tools/install-browser-tools
+#       - checkout
+#       - run: npm install --global npm@latest
+#       - run: npm install
+#       - run: |
+#           node --version
+#           java --version
+#           google-chrome --version
+#       - run: npm test
 orbs:
   browser-tools: circleci/browser-tools@1.1.0
 jobs:
   build:
     docker:
-      - image: cimg/node:20.8.0-browsers
-        environment:
-          CHROME_BIN: "/usr/bin/google-chrome"
+      - image: cimg/node:15.0.1-browsers
     steps:
       - browser-tools/install-browser-tools
       - checkout
-      - run: npm install --global npm@latest
-      - run: npm install
       - run: |
           node --version
           java --version
           google-chrome --version
-      - run: npm test

@@ -8,7 +8,8 @@ jobs:
     docker:
       - image: cimg/node:20.7-browsers
     steps:
-      - browser-tools/install-chrome
+      - browser-tools/install-chrome:
+        chrome-version: 85.0.4183.102
       - browser-tools/install-chromedriver
       - checkout
       - run: npm install --global npm@latest

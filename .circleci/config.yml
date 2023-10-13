@@ -39,14 +39,14 @@ jobs:
   build:
     docker:
       - image: cimg/node:12.19-browsers
+        environment:
+           CHROME_BIN: "/usr/bin/google-chrome"
     steps:
       - browser-tools/install-browser-tools:
           chrome-version: 85.0.4183.102
-          firefox-version: 80.0.1
+      - checkout
+      - run: npm install --global npm@latest
+      - run: npm install
       - run:
           command: |
             google-chrome --version
-            firefox --version
-            geckodriver --version
-            chromedriver --version
-            java -jar /usr/local/bin/selenium.jar --version

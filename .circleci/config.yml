@@ -6,12 +6,11 @@ orbs:
 jobs:
   build:
     docker:
-      - image: cimg/node:12.19-browsers
+      - image: cimg/node:20.7-browsers
         environment:
            CHROME_BIN: "/usr/bin/google-chrome"
     steps:
-      - browser-tools/install-browser-tools:
-          chrome-version: 85.0.4183.102
+      - browser-tools/install-browser-tools
       - checkout
       - run: npm install --global npm@latest
       - run: npm install

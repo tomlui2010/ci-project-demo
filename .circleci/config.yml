@@ -8,16 +8,13 @@ jobs:
     docker:
       - image: cimg/node:20.7-browsers
     steps:
-      - browser-tools/install-chrome:
-          chrome-version: 116.0.5845.96 # TODO: remove until: https://github.com/CircleCI-Public/browser-tools-orb/issues/75
-          replace-existing: true # TODO: remove until: https://github.com/CircleCI-Public/browser-tools-orb/issues/75
+      - browser-tools/install-chrome
       - checkout
       - run: npm install --global npm@latest
       - run: npm install
       - run:
           command: |
             google-chrome --version
-            chromedriver --version
           name: Check install
       - run: npm test
 

@@ -2,10 +2,16 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:7.10-browsers
+      - image: cimg/node:20.8.0-browsers
         environment:
           CHROME_BIN: "/usr/bin/google-chrome"
     steps:
       - checkout
+      - run: npm install --global npm@latest
+npm install --global n
+n latest
+cd <project-directory>
+rm -rf node_modules
+npm install
       - run: npm install
       - run: npm test

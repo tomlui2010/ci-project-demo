@@ -1,22 +1,22 @@
-version: 2
-# orbs:
-#   browser-tools: circleci/browser-tools@1.1.0
-jobs:
-  build:
-    docker:
-      - image: cimg/node:20.8.0-browsers
-        environment:
-          CHROME_BIN: "/usr/bin/google-chrome"
-    steps:
-      - circleci/browser-tools@1.1.0/install-browser-tools
-      - checkout
-      - run: npm install --global npm@latest
-      - run: npm install
-      - run: |
-          node --version
-          java --version
-          google-chrome --version
-      - run: npm test
+# version: 2
+# # orbs:
+# #   browser-tools: circleci/browser-tools@1.1.0
+# jobs:
+#   build:
+#     docker:
+#       - image: cimg/node:20.8.0-browsers
+#         environment:
+#           CHROME_BIN: "/usr/bin/google-chrome"
+#     steps:
+#       - circleci/browser-tools@1.1.0/install-browser-tools
+#       - checkout
+#       - run: npm install --global npm@latest
+#       - run: npm install
+#       - run: |
+#           node --version
+#           java --version
+#           google-chrome --version
+#       - run: npm test
 # orbs:
 #   browser-tools: circleci/browser-tools@1.1.0
 # jobs:
@@ -30,3 +30,23 @@ jobs:
 #           node --version
 #           java --version
 #           google-chrome --version
+version: 2.1
+
+orbs:
+  browser-tools: circleci/browser-tools@1.1.0
+
+jobs:
+  test:
+    docker:
+      - image: cimg/node:12.19-browsers
+    steps:
+      - browser-tools/install-browser-tools:
+          chrome-version: 85.0.4183.102
+          firefox-version: 80.0.1
+      - run:
+          command: |
+            google-chrome --version
+            firefox --version
+            geckodriver --version
+            chromedriver --version
+            java -jar /usr/local/bin/selenium.jar --version

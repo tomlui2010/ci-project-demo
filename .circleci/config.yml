@@ -10,7 +10,6 @@ jobs:
     steps:
       - browser-tools/install-chrome
       - checkout
-      - run: npm install --global npm@latest
       - run: npm install
       - run:
           command: |
